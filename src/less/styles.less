@@ -40,14 +40,21 @@
 @color-descriptions: #767E9E;
 @basic-red: #F06C64;
 @basic-red-dark: #D6564F;
+@color-red-hover: #F17A73;
+@color-red-dark-xl: #AB443F;
 @basic-red-placeholder: #F48C8F;
 @basic-blue: #2D303A;
+@color-blue: #648BF0;
 @color-white-light: #F2F2F2;
 @color-white: #ffffff;
 @color-skill: #DEDEDE;
 @color-special-light: #F0D8D9;
 @color-btn-text: #886A30;
 @color-btn-background: #FBC65F;
+@color-btn-hover: #E1B255;
+@color-btn-active: #C89E4C;
+@slider-btn-hover: #C05650;
+@skill-hover: #E5E500;
 
 .set-font(@font-size, @line-height, @font-weight) {
   font-size: @font-size;
@@ -142,7 +149,7 @@ img {
     width: 278px;
     height: 100vh;
     background-color: @basic-blue;
-    box-shadow: 120px 0px 20px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 120px 0px 20px 400px rgba(0, 0, 0, 0.4);
   }
 
   @media (min-width: @tablet-width) {
@@ -190,7 +197,7 @@ img {
     display: none;
   }
 
-  @media(max-width: @mobile-width) {
+  @media(max-width: @tablet-width) {
     width: 205px;
     position: absolute;
     top: 200px;
@@ -239,6 +246,15 @@ img {
   text-transform: uppercase;
   color: @color-white;
 
+  &:hover,
+  &:focus {
+    color: @color-red-hover;
+  }
+
+  &:active {
+    color: @basic-red-dark;
+  }
+
   @media (min-width: @tablet-width) {
     display: block;
     font-family: inherit;
@@ -284,12 +300,18 @@ img {
     background-color: @basic-red;
   }
 
+  &--blue {
+    justify-content: center;
+    background-color: @color-blue;
+  }
+
   &--show {
     display: flex;
   }
 }
 
 .slider__img {
+  z-index: 2;
   display: block;
   width: 88px;
   height: 178px;
@@ -320,6 +342,46 @@ img {
   }
 }
 
+.slider__second-img {
+  width: 55px;
+  height: 111px;
+  opacity: 0.5;
+
+  &--right {
+    margin-left: 10px;
+
+    @media (min-width: @tablet-width) {
+      margin-left: 25px;
+    }
+
+    @media (min-width: @desktop-width) {
+      margin-left: 35px;
+    }
+  }
+
+  &--left {
+    margin-right: 10px;
+
+    @media (min-width: @tablet-width) {
+      margin-right: 25px;
+    }
+
+    @media (min-width: @desktop-width) {
+      margin-right: 35px;
+    }
+  }
+
+  @media (min-width: @tablet-width) {
+    width: 113px;
+    height: 228px;
+  }
+
+  @media (min-width: @desktop-width) {
+    width: 157px;
+    height: 314px;
+  }
+}
+
 .slider__btn {
   display: block;
   position: absolute;
@@ -328,6 +390,15 @@ img {
   top: calc((100% - 26px) / 2);
   border: none;
   background-color: transparent;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+
+    path {
+      fill: @slider-btn-hover;
+    }
+  }
 
   &--previous {
     left: 10px;
@@ -459,6 +530,13 @@ img {
   border: 1px solid @color-descriptions;
   border-radius: 5px;
 
+  &:hover,
+  &:focus {
+    color: @skill-hover;
+    border-color: @skill-hover;
+  }
+
+  &:active,
   &--current {
     color: @color-skill;
     border-color: @color-skill;
@@ -488,6 +566,15 @@ img {
     @media (min-width: @tablet-width) {
       width: 220px;
       height: 187px;
+    }
+  }
+
+  a {
+    display: block;
+
+    &:hover,
+    &:focus {
+      animation: scale 1s forwards;
     }
   }
 }
@@ -577,17 +664,28 @@ img {
   }
 }
 
-.about__contacts {
+.contacts__list {
   list-style: none;
   display: flex;
   column-gap: 8px;
   flex-wrap: wrap;
 }
 
-.about__link {
+.contacts__link {
   display: block;
   width: 32px;
   height: 32px;
+  border-radius: 50%;
+
+  &:hover,
+  &:focus {
+    background-color: @color-header;
+
+    .link--word,
+    .link--circle {
+      fill: @color-white-light;
+    }
+  }
 }
 
 .contact-us {
@@ -646,17 +744,22 @@ img {
 
 .contact-us__input,
 .contact-us__text {
-  font-family: inherit;
+  font-family: "Lato", "Georgia", serif;
   display: block;
   width: 100%;
   padding-top: 13px;
   padding-bottom: 13px;
   padding-left: 7px;
-  .set-font(12px, 12px, 400);
+  .set-font(14px, 14px, 400);
   border: none;
   border-radius: 5px;
   color: @color-special-light;
   background-color: @basic-red-dark;
+
+  &:hover,
+  &:focus {
+    background-color: @color-red-dark-xl;
+  }
 }
 
 .contact-us__input::placeholder,
@@ -677,6 +780,16 @@ img {
   border: none;
   border-radius: 5px;
   background-color: @color-btn-background;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background-color: @color-btn-hover;
+  }
+
+  &:active {
+    background-color: @color-btn-active;
+  }
 
   @media (min-width: @tablet-width) {
     width: 136px;
@@ -784,4 +897,13 @@ img {
   display: block;
   width: 32px;
   height: 32px;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
 }
